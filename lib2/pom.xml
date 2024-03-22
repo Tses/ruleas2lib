@@ -180,6 +180,8 @@
         </executions>
       </plugin>
 
+
+      <!--  https://github.com/wildfly/jandex-maven-plugin  -->
       <plugin>
         <groupId>org.jboss.jandex</groupId>
         <artifactId>jandex-maven-plugin</artifactId>
@@ -193,13 +195,23 @@
               <goal>jandex</goal>
             </goals>
 
-
             <configuration>
-              <processDefaultFileSet>true</processDefaultFileSet>
+              <skip>false</skip>
+              <processDefaultFileSet>false</processDefaultFileSet>
+
+            
               <fileSets>
+
                 <fileSet>
-                  <directory>${project.build.directory}/classes/gr/tses/lib2</directory>
+                  <directory>${project.build.directory}/classes</directory>
+                  <excludes>
+                    <exclude>**/*NotIndexed.class</exclude>
+                     <exclude>**/org/kie/kogito/app/**</exclude>
+                  </excludes>        
                 </fileSet>
+<!-- <fileSet>
+                  <directory>${project.build.directory}/classes/gr/kie/kogito/app</directory>
+                </fileSet>                 -->
               </fileSets>
             </configuration>
             
