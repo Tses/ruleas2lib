@@ -194,28 +194,22 @@
             <goals>
               <goal>jandex</goal>
             </goals>
-
             <configuration>
-              <skip>false</skip>
+              <skip>true</skip>
               <processDefaultFileSet>false</processDefaultFileSet>
-
-            
               <fileSets>
-          
                 <fileSet>
                   <directory>${project.build.directory}/classes</directory>
+                  <includes>
+                    <include>**/lib1/*.class</include>                    
+                  </includes>                  
                   <excludes>
                     <exclude>**/*NotIndexed.class</exclude>
-                     <exclude>**/org/kie/kogito/app/**</exclude>
+                     <exclude>**/*ConfigBean.class</exclude>
                   </excludes>        
                 </fileSet>
-                <!-- <fileSet>
-                  <directory>${project.build.directory}/classes/gr/kie/kogito/app</directory>
-                </fileSet>                 -->
               </fileSets>
             </configuration>
-            
-
           </execution>
         </executions>
       </plugin>      
@@ -225,7 +219,7 @@
         <version>3.3.0</version>
         <configuration>
           <excludes>
-            <!--<exclude>**/org/kie/**</exclude>-->
+            <exclude>**/org/kie/**</exclude>
             <exclude>**/HotReloadSupportClass.class</exclude>
           </excludes>
         </configuration>
